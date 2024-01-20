@@ -71,3 +71,7 @@ gem 'devise'
 
 # ENV
 gem 'dotenv-rails'
+
+# CSS
+gem "bootstrap"
+gem "sassc-rails"
