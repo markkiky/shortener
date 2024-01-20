@@ -68,3 +68,6 @@ end
 
 # Auth Gems
 gem 'devise'
+
+# ENV
+gem 'dotenv-rails'
