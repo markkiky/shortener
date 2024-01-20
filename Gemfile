@@ -75,3 +75,6 @@ gem 'dotenv-rails'
 # CSS
 gem "bootstrap"
 gem "sassc-rails"
+
+# CORS
+gem 'rack-cors'
