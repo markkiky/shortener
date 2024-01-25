@@ -1,9 +1,10 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:redirect]
 
   # GET /links or /links.json
   def index
-    @links = Link.all
+    @links = current_user.links.all
   end
 
   # GET /links/1 or /links/1.json
@@ -19,7 +20,7 @@ class LinksController < ApplicationController
 
   # POST /links or /links.json
   def create
-    @link = Link.new(link_params)
+    @link = current_user.links.new(link_params)
 
     respond_to do |format|
       if @link.save
@@ -57,11 +58,18 @@ class LinksController < ApplicationController
     end
   end
 
+  def redirect
+    @link = Link.find_by_short_code(params[:short_code])
+    render 'errors/404', status: 404 if @link.nil?
+    @link.update_attribute(:clicks, @link.clicks.to_i + 1)
+    redirect_to @link.url, allow_other_host: true, status: 301
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_link
-    @link = Link.find(params[:id])
+    @link = current_user.links.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -7,9 +7,9 @@ class CreateLinks < ActiveRecord::Migration[7.1]
       t.string :favicon
       t.string :short_code
       t.date :expiry_date
-      t.integer :clicks
-      t.boolean :validated
-      t.boolean :deleted
+      t.integer :clicks, default: 0
+      t.boolean :validated, default: false
+      t.boolean :deleted, default: false
 
       t.timestamps
     end
