@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ("/")
-  root 'home#index'
+  root 'links#index'
   # root "posts#index"
   resources 'links'
+  get '/s/:short_code', to: 'links#redirect', as: :short
 end
