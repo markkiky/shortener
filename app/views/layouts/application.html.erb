@@ -11,8 +11,11 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p> 
-    <p class="alert"><%= alert %></p> 
+    <% if user_signed_in? %> 
+      <%= render "layouts/navbar" %>
+    <% end %>
+    <p style="color: green"><%= notice %></p>
+    <p class="color: red"><%= alert %></p> 
     <%= yield %>
   </body>
 </html>
