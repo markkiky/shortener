@@ -49,7 +49,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'rswag-specs'
 end
 
 group :development do
@@ -94,7 +93,3 @@ gem 'faker', '~> 3.2'
 # Pagination
 gem 'pagy'
 gem 'ransack'
-
-# Swagger
-gem 'rswag-api'
-gem 'rswag-ui'
