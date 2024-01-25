@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_23_103201) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_23_201308) do
   create_table "links", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "url"
@@ -18,11 +18,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_23_103201) do
     t.string "favicon"
     t.string "short_code"
     t.date "expiry_date"
-    t.integer "clicks"
-    t.boolean "validated"
-    t.boolean "deleted"
+    t.integer "clicks", default: 0
+    t.boolean "validated", default: false
+    t.boolean "deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["short_code"], name: "index_links_on_short_code", unique: true
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
