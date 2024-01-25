@@ -11,10 +11,6 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
 
   <div>
     <%= form.label :url, style: "display: block" %>
@@ -22,38 +18,13 @@
   </div>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :favicon, style: "display: block" %>
-    <%= form.text_field :favicon %>
-  </div>
-
-  <div>
     <%= form.label :short_code, style: "display: block" %>
-    <%= form.text_field :short_code %>
+    <%= form.text_field :short_code, required: false %>
   </div>
 
   <div>
     <%= form.label :expiry_date, style: "display: block" %>
-    <%= form.date_field :expiry_date %>
-  </div>
-
-  <div>
-    <%= form.label :clicks, style: "display: block" %>
-    <%= form.number_field :clicks %>
-  </div>
-
-  <div>
-    <%= form.label :validated, style: "display: block" %>
-    <%= form.check_box :validated %>
-  </div>
-
-  <div>
-    <%= form.label :deleted, style: "display: block" %>
-    <%= form.check_box :deleted %>
+    <%= form.date_field :expiry_date, min: Date.current.to_s, required: true %>
   </div>
 
   <div>

@@ -44,4 +44,9 @@
     <%= link.deleted %>
   </p>
 
+  <p>
+    <strong>Visit:</strong>
+    <%= link_to "#{link.short_url}", short_path(link.short_code), target: :_blank %>
+    
+
 </div>
