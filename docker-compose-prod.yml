@@ -1,0 +1,52 @@
+version: "3.3"
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: url_shortner:prod
+    ports:
+      - ${HOST_PORT}:${HOST_PORT}
+    depends_on:
+      - sidekiq
+      - postgres
+      - redis
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    restart: always
+
+  sidekiq:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: url_shortner:prod
+    command: bundle exec sidekiq
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:16.1-alpine
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}
+
+  redis:
+    image: "redis:7.2.4-alpine"
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - "redis:/data"
+    ports:
+      - ${REDIS_PORT}
+
+volumes:
+  redis:
+  postgres:

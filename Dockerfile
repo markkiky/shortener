@@ -19,7 +19,7 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config nodejs libpq-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -34,7 +34,7 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 
 # Final stage for app image
@@ -42,7 +42,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
+    apt-get install --no-install-recommends -y curl libpq-dev nodejs libvips && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
@@ -50,9 +50,9 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
-USER rails:rails
+# RUN useradd rails --create-home --shell /bin/bash && \
+#     chown -R rails:rails /rails/db /rails/log /rails/storage /rails/tmp
+# USER rails:rails
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
