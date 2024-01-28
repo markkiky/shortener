@@ -2,7 +2,8 @@
 
 redis = {
   url: ENV['REDIS_URL'],
-  password: ENV['REDIS_PASSWORD']
+  password: ENV['REDIS_PASSWORD'],
+  ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
 }
 
 Sidekiq.configure_server do |config|
