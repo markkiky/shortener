@@ -31,6 +31,8 @@ services:
 
   haproxy:
     image: haproxy:latest
+    depends_on:
+      - web
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
