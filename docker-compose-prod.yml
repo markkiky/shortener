@@ -1,12 +1,46 @@
 version: "3.3"
 services:
-  web:
+  web01:
     build: 
       context: .
       dockerfile: Dockerfile
     image: url_shortner:prod
     ports:
       - ${HOST_PORT}:${HOST_PORT}
+    depends_on:
+      - sidekiq
+      - postgres
+      - redis
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    restart: always
+
+  web02:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: url_shortner:prod
+    ports:
+      - 3001:${HOST_PORT}
+    depends_on:
+      - sidekiq
+      - postgres
+      - redis
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    restart: always
+
+  web03:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: url_shortner:prod
+    ports:
+      - 3002:${HOST_PORT}
     depends_on:
       - sidekiq
       - postgres
@@ -32,7 +66,9 @@ services:
   haproxy:
     image: haproxy:latest
     depends_on:
-      - web
+      - web01
+      - web02
+      - web03
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
