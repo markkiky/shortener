@@ -24,5 +24,17 @@ module Shortener
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_job.queue_adapter = :sidekiq
+
+    # gmail Settings
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'circuit71.com',
+      user_name: ENV['EMAIL'],
+      password: ENV['PASSWORD'],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
   end
 end
