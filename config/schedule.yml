@@ -1,0 +1,4 @@
+statistics_job:
+  cron: "0 */2 * * *"
+  class: "ClicksJob"
+  queue: default
