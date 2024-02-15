@@ -1,52 +1,43 @@
-<div id="<%= dom_id link %>">
-  <p>
-    <strong>User:</strong>
-    <%= link.user_id %>
-  </p>
-
-  <p>
-    <strong>Url:</strong>
-    <%= link.url %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= link.title %>
-  </p>
-
-  <p>
-    <strong>Favicon:</strong>
-    <%= link.favicon %>
-  </p>
-
-  <p>
-    <strong>Short code:</strong>
-    <%= link.short_code %>
-  </p>
-
-  <p>
-    <strong>Expiry date:</strong>
-    <%= link.expiry_date %>
-  </p>
-
-  <p>
-    <strong>Clicks:</strong>
-    <%= link.clicks %>
-  </p>
-
-  <p>
-    <strong>Validated:</strong>
-    <%= link.validated %>
-  </p>
-
-  <p>
-    <strong>Deleted:</strong>
-    <%= link.deleted %>
-  </p>
-
-  <p>
-    <strong>Visit:</strong>
-    <%= link_to "#{link.short_url}", short_path(link.short_code), target: :_blank %>
-    
-
+<div id="<%= dom_id link %>" class="card mt-3">
+  <div class="card-body">
+    <h5 class="card-title">Link Details</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <strong>URL:</strong>
+        <%= link.url %>
+      </li>
+      <li class="list-group-item">
+        <strong>Title:</strong>
+        <%= link.title %>
+      </li>
+      <li class="list-group-item">
+        <strong>Favicon:</strong>
+        <%= link.favicon %>
+      </li>
+      <li class="list-group-item">
+        <strong>Short Code:</strong>
+        <%= link.short_code %>
+      </li>
+      <li class="list-group-item">
+        <strong>Expiry Date:</strong>
+        <%= link.expiry_date %>
+      </li>
+      <li class="list-group-item">
+        <strong>Clicks:</strong>
+        <%= link.clicks %>
+      </li>
+      <li class="list-group-item">
+        <strong>Validated:</strong>
+        <%= link.validated %>
+      </li>
+      <li class="list-group-item">
+        <strong>Deleted:</strong>
+        <%= link.deleted %>
+      </li>
+      <li class="list-group-item">
+        <strong>Visit:</strong>
+        <%= link_to "#{link.short_url}", short_path(link.short_code) %>
+      </li>
+    </ul>
+  </div>
 </div>

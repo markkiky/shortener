@@ -12,7 +12,9 @@
 
   <body>
     <% if user_signed_in? %> 
-      <%= render "layouts/navbar" %>
+      <% unless action_name == "new" || action_name == "edit" %>
+        <%= render "layouts/navbar" %>
+      <%end%>
     <% end %>
     <p style="color: green"><%= notice %></p>
     <p class="color: red"><%= alert %></p> 

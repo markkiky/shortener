@@ -1,13 +1,29 @@
-
 <h1>Links</h1>
 
-<div id="links">
-  <% @links.each do |link| %>
-    <%= render link %>
-    <p>
-      <%= link_to "Show this link", link %>
-    </p>
-  <% end %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Short Code</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @links.each do |link| %>
+        <tr>
+          <td><img src="<%= link.favicon %>" alt="Image"></td>
+          <td><%= link.short_code %></td>
+          <td>
+            <%= link_to "Show", link, class: "btn btn-info btn-sm mr-1" %>
+            <%= link_to "Edit", edit_link_path(link), class: "btn btn-primary btn-sm mr-1" %>
+           
+            <%= button_to 'Delete', link_path(link), method: :delete,  data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New link", new_link_path %>
+<%= link_to "New link", new_link_path, class: "btn btn-success mt-3" %>

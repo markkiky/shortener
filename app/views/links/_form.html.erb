@@ -1,33 +1,32 @@
-<%= form_with(model: link) do |form| %>
+<%= form_with(model: link, class: "needs-validation") do |form| %>
   <% if link.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"> <%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h4>
 
       <ul>
-        <% link.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% link.errors.full_messages.each do |error_message| %>
+          <li><%= error_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-
-  <div>
-    <%= form.label :url, style: "display: block" %>
-    <%= form.text_area :url %>
+  <div class="mb-3">
+    <%= form.label :url, class: "form-label" %>
+    <%= form.text_area :url, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :short_code, style: "display: block" %>
-    <%= form.text_field :short_code, required: false %>
+  <div class="mb-3">
+    <%= form.label :short_code, class: "form-label" %>
+    <%= form.text_field :short_code, class: "form-control", required: false %>
   </div>
 
-  <div>
-    <%= form.label :expiry_date, style: "display: block" %>
-    <%= form.date_field :expiry_date, min: Date.current.to_s, required: true %>
+  <div class="mb-3">
+    <%= form.label :expiry_date, class: "form-label" %>
+    <%= form.date_field :expiry_date, class: "form-control", min: Date.current.to_s, required: true %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
