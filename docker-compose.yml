@@ -1,0 +1,93 @@
+version: "3.3"
+services:
+  web01:
+    image:  654654276211.dkr.ecr.us-east-1.amazonaws.com/url-shortener-prod:${IMAGE_TAG:-latest}
+    platform: linux/amd64
+    restart: always
+    ports: 
+      - "3000:3000"
+    command: ["./bin/rails", "server"]
+    env_file:
+      - .env
+    networks:
+      - url-shortener-network
+
+  web02:
+    image:  654654276211.dkr.ecr.us-east-1.amazonaws.com/url-shortener-prod:${IMAGE_TAG:-latest}
+    platform: linux/amd64
+    restart: always
+    ports: 
+      - "3001:3000"
+    command: ["./bin/rails", "server"]
+    env_file:
+      - .env
+    networks:
+      - url-shortener-network
+
+
+  web03:
+    image:  654654276211.dkr.ecr.us-east-1.amazonaws.com/url-shortener-prod:${IMAGE_TAG:-latest}
+    platform: linux/amd64
+    restart: always
+    ports: 
+      - "3002:3000"
+    command: ["./bin/rails", "server"]
+    env_file:
+      - .env
+    networks:
+      - url-shortener-network
+    
+
+  sidekiq:
+    image: 654654276211.dkr.ecr.us-east-1.amazonaws.com/url-shortener-prod:${IMAGE_TAG:-latest}
+    platform: linux/amd64
+    command: bundle exec sidekiq -e production -c 5
+    env_file:
+      - .env
+    networks:
+      - url-shortener-network
+
+  haproxy:
+    image: haproxy:latest
+    platform: linux/amd64
+    restart: always
+    depends_on:
+      - web01
+      - web02
+      - web03
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - "80:80"
+    networks:
+      - url-shortener-network
+
+
+  postgres:
+    image: postgres:16.1-alpine
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}
+    networks:
+      - url-shortener-network
+
+  redis:
+    image: "redis:7.2.4-alpine"
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - "redis:/data"
+    ports:
+      - ${REDIS_PORT}
+    networks:
+      - url-shortener-network
+
+networks:
+  url-shortener-network:
+
+volumes: 
+  postgres:
+  redis:
