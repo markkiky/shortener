@@ -1,16 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">URL Shortner</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Links', links_path, class: "nav-link active" %>
-        </li>
-      </ul>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %> 
+<nav class="bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between">
+      <div class="flex space-x-4">
+        <!-- logo -->
+        <div>
+          <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+            <svg class="h-6 w-6 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <!-- You can insert an icon here -->
+            </svg>
+            <span class="font-bold">URL Shortner</span>
+          </a>
+        </div>
+      </div>
+      <!-- Primary Nav -->
+      <div class="flex items-center space-x-1">
+        <a href="<%= links_path %>" class="py-5 px-3 text-gray-700 hover:text-gray-900">Links</a>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75" %>
+      </div>
+      <!-- Mobile button -->
+      <div class="md:hidden flex items-center">
+        <button class="mobile-menu-button">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu hidden">
+    <a href="<%= links_path %>" class="block py-2 px-4 text-sm hover:bg-gray-200">Links</a>
+    <!-- Add more mobile menu items here -->
+  </div>
 </nav>
+
+<script>
+  // Toggle Mobile Menu
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    menuButton.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+    });
+  });
+</script>

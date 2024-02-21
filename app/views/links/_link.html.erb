@@ -1,43 +1,47 @@
-<div id="<%= dom_id link %>" class="card mt-3">
-  <div class="card-body">
-    <h5 class="card-title">Link Details</h5>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <strong>URL:</strong>
-        <%= link.url %>
-      </li>
-      <li class="list-group-item">
-        <strong>Title:</strong>
-        <%= link.title %>
-      </li>
-      <li class="list-group-item">
-        <strong>Favicon:</strong>
-        <%= link.favicon %>
-      </li>
-      <li class="list-group-item">
-        <strong>Short Code:</strong>
-        <%= link.short_code %>
-      </li>
-      <li class="list-group-item">
-        <strong>Expiry Date:</strong>
-        <%= link.expiry_date %>
-      </li>
-      <li class="list-group-item">
-        <strong>Clicks:</strong>
-        <%= link.clicks %>
-      </li>
-      <li class="list-group-item">
-        <strong>Validated:</strong>
-        <%= link.validated %>
-      </li>
-      <li class="list-group-item">
-        <strong>Deleted:</strong>
-        <%= link.deleted %>
-      </li>
-      <li class="list-group-item">
-        <strong>Visit:</strong>
-        <%= link_to "#{link.short_url}", short_path(link.short_code) %>
-      </li>
-    </ul>
+<div id="<%= dom_id link %>" class="bg-white shadow overflow-hidden sm:rounded-lg mt-3">
+  <div class="px-4 py-5 sm:px-6">
+    <h5 class="text-lg leading-6 font-medium text-gray-900">Link Details</h5>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">URL:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.url %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Title:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.title %></dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Favicon:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.favicon %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Short Code:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.short_code %></dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Expiry Date:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.expiry_date %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Clicks:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.clicks %></dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Validated:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.validated %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Deleted:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= link.deleted %></dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Visit:</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= link_to "#{link.short_url}", short_path(link.short_code), target: :_blank, class: "text-indigo-600 hover:text-indigo-900" %>
+        </dd>
+      </div>
+    </dl>
   </div>
 </div>

@@ -77,8 +77,8 @@ gem 'devise'
 gem 'dotenv-rails'
 
 # CSS
-gem 'bootstrap'
-gem 'sassc-rails'
+gem 'sassc'
+gem 'tailwindcss-rails'
 
 # CORS
 gem 'rack-cors'
