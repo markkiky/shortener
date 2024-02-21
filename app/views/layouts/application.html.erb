@@ -17,8 +17,10 @@
         <%= render "layouts/navbar" %>
       <%end%>
     <% end %>
-    <p style="color: green"><%= notice %></p>
-    <p class="color: red"><%= alert %></p> 
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <p style="color: green"><%= notice %></p>
+      <p class="color: red"><%= alert %></p> 
+    </div>
     <%= yield %>
   </body>
 </html>

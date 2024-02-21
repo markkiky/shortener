@@ -1,28 +1,32 @@
-<h1 class="text-2xl font-bold mb-4">Links</h1>
+<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+  <h1 class="text-2xl font-bold mb-4">Links</h1>
 
-<div class="overflow-x-auto">
-  <table class="min-w-full table-auto text-left whitespace-no-wrap">
-    <thead class="bg-gray-100">
-      <tr>
-        <th class="px-4 py-2">Image</th>
-        <th class="px-4 py-2">Short Code</th>
-        <th class="px-4 py-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @links.each do |link| %>
-        <tr class="border-b">
-          <td class="px-4 py-2"><img src="<%= link.favicon %>" alt="Image" class="h-8 w-8"></td>
-          <td class="px-4 py-2"><%= link.short_code %></td>
-          <td class="px-4 py-2">
-            <%= link_to "Show", link, class: "inline-block bg-blue-500 text-white py-1 px-3 rounded text-xs font-medium mr-1" %>
-            <%= link_to "Edit", edit_link_path(link), class: "inline-block bg-blue-700 text-white py-1 px-3 rounded text-xs font-medium mr-1" %>
-            <%= button_to 'Delete', link_path(link), method: :delete,  data: { confirm: "Are you sure?" }, class: "inline-block bg-red-500 text-white py-1 px-3 rounded text-xs font-medium" %>
-          </td>
+  <div class="overflow-x-auto">
+    <table class="min-w-full table-auto text-left whitespace-no-wrap">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2">Image</th>
+          <th class="px-4 py-2">Short Code</th>
+          <th class="px-4 py-2">Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <% @links.each do |link| %>
+          <tr class="border-b">
+            <td class="px-4 py-2"><img src="<%= link.favicon %>" alt="Image" class="h-8 w-8"></td>
+            <td class="px-4 py-2"><%= link.short_code %></td>
+            <td class="px-4 py-2">
+              <div class="flex items-center space-x-1">
+                <%= link_to "Show", link, class: "inline-flex items-center justify-center bg-blue-500 text-white py-1 px-3 rounded text-xs font-medium mr-1" %>
+                <%= link_to "Edit", edit_link_path(link), class: "inline-flex items-center justify-center bg-blue-700 text-white py-1 px-3 rounded text-xs font-medium mr-1" %>
+                <%= button_to 'Delete', link_path(link), method: :delete,  data: { confirm: "Are you sure?" }, class: "inline-flex items-center justify-center bg-red-500 text-white py-1 px-3 rounded text-xs font-medium" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<%= link_to "New link", new_link_path, class: "inline-block bg-green-500 text-white py-2 px-4 rounded mt-3" %>
+  <%= link_to "New link", new_link_path, class: "inline-block bg-green-500 text-white py-2 px-4 rounded mt-3" %>
+</div>

@@ -1,9 +1,11 @@
 
-<%= render @link %>
+<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+  <%= render @link %>
 
-<div>
-  <%= link_to "Edit this link", edit_link_path(@link), class: "text-indigo-600 hover:text-indigo-900" %> |
-  <%= link_to "Back to links", links_path, class: "text-indigo-600 hover:text-indigo-900" %>
+  <div>
+    <%= link_to "Edit this link", edit_link_path(@link), class: "text-indigo-600 hover:text-indigo-900" %> |
+    <%= link_to "Back to links", links_path, class: "text-indigo-600 hover:text-indigo-900" %>
 
-  <%= button_to "Destroy this link", @link, method: :delete , class: "text-indigo-600 hover:text-indigo-900"%>
+    <%= button_to "Destroy this link", @link, method: :delete , class: "text-indigo-600 hover:text-indigo-900"%>
+  </div>
 </div>
